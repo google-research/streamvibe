@@ -1,0 +1,13 @@
+# Versions observed in the source training environment; not a new training run.
+# Install the CUDA 12.8 PyTorch wheel separately as described in ../README.md.
+torch==2.8.0
+transformers==5.15.0
+deepspeed==0.18.2
+peft==0.20.0
+qwen-vl-utils==0.0.14
+numpy==2.2.6
+av==17.1.0
+pillow==12.3.0
+safetensors==0.8.0
+# Added for exact product-score assignment in the manuscript recipe.
+scipy>=1.9,<2

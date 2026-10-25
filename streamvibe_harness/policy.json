@@ -1,0 +1,346 @@
+{
+  "schema": "streamvibe-harness-policy",
+  "status": "released",
+  "evidence_policy": {
+    "memory_parts": "summaries",
+    "memory_style": "decision_ordered",
+    "said_keep": 0,
+    "rules": {
+      "experiment_role": "General semantic routing with causally grounded, profile-compatible Top-1 Experience recall.",
+      "skill_grounding": "A visible Skill requires an active typed request, a compatible semantic profile, and observed B, Plan, or Event context.",
+      "model_authority": "The interaction model alone decides silence or response and generates text; Harness state is compiled only before that call."
+    },
+    "memory_focus_rules": {
+      "grounding": "Keep only timestamped visibly established facts; current raw frames override lagging summaries.",
+      "separation": "Never convert a user condition, model reply, Skill, reference plan, or unconfirmed inference into a video fact.",
+      "ordering": "Preserve distinct actions in strict temporal order with actor, action, object, from/to state, overlap, and before/after relation."
+    },
+    "context_projection": {
+      "state_slots_by_profile": {
+        "physical_guidance": [
+          "experience",
+          "lifecycle",
+          "compact",
+          "adaptive"
+        ],
+        "digital_guidance": [
+          "experience",
+          "lifecycle",
+          "compact",
+          "adaptive"
+        ],
+        "explanation": [
+          "experience",
+          "lifecycle",
+          "compact",
+          "adaptive"
+        ],
+        "monitoring": [
+          "experience",
+          "lifecycle",
+          "compact",
+          "adaptive"
+        ],
+        "event_watch": [
+          "experience",
+          "lifecycle",
+          "compact",
+          "adaptive"
+        ],
+        "narration": [
+          "experience",
+          "lifecycle",
+          "symbolic",
+          "compact",
+          "adaptive"
+        ],
+        "question_answering": [
+          "experience",
+          "lifecycle",
+          "compact",
+          "adaptive"
+        ],
+        "passive_observation": [
+          "lifecycle",
+          "compact",
+          "adaptive"
+        ],
+        "fallback": [
+          "lifecycle",
+          "compact",
+          "adaptive"
+        ]
+      },
+      "state_slots_by_criterion": {
+        "answer_mcq": [
+          "experience",
+          "lifecycle",
+          "compact",
+          "adaptive"
+        ],
+        "question": [
+          "belief",
+          "request",
+          "experience",
+          "anchored",
+          "compact",
+          "adaptive"
+        ],
+        "milestone": [
+          "experience",
+          "lifecycle",
+          "compact",
+          "adaptive"
+        ],
+        "stage_summary": [
+          "experience",
+          "lifecycle",
+          "compact",
+          "adaptive"
+        ]
+      },
+      "belief_query_mode_by_criterion": {
+        "answer_mcq": "full_request"
+      },
+      "criterion_projection_requires_initial_presence": [
+        "answer_mcq"
+      ],
+      "header_memory": "none",
+      "header_memory_by_profile": {
+        "passive_observation": "none",
+        "event_watch": "on_demand",
+        "monitoring": "on_demand",
+        "question_answering": "on_demand",
+        "fallback": "none"
+      },
+      "control_role": "user",
+      "event_lifetime": "append",
+      "decision_contract": "none",
+      "response_history": "action_marker",
+      "response_history_by_profile": {
+        "physical_guidance": "latest_full",
+        "digital_guidance": "latest_full",
+        "monitoring": "latest_full",
+        "event_watch": "latest_full",
+        "question_answering": "latest_full",
+        "narration": "loop_latest_full",
+        "passive_observation": "latest_full",
+        "fallback": "latest_full"
+      },
+      "silence_history": "first_per_epoch",
+      "silence_history_by_profile": {
+        "passive_observation": "first_per_epoch"
+      },
+      "silence_history_by_criterion": {
+        "answer_mcq": "first_per_epoch"
+      },
+      "silence_history_requires_specific_focus": [
+        "answer_mcq"
+      ],
+      "prompt_router": {
+        "refresh": "causal_request_events",
+        "compose_active_criteria": true,
+        "temporary_question_profile": true,
+        "criteria_profiles": {
+          "next_step": "physical_guidance",
+          "mistake_watch": "monitoring",
+          "milestone": "monitoring",
+          "stage_summary": "monitoring",
+          "explain": "explanation",
+          "hazard_monitor": "monitoring",
+          "event_watch": "event_watch",
+          "narrate": "narration",
+          "answer_mcq": "question_answering",
+          "question": "question_answering"
+        },
+        "profiles": {
+          "physical_guidance": "streamvibe_context",
+          "digital_guidance": "streamvibe_context",
+          "explanation": "streamvibe_context",
+          "monitoring": "streamvibe_context",
+          "event_watch": "streamvibe_context",
+          "narration": "streamvibe_context",
+          "question_answering": "streamvibe_context",
+          "passive_observation": "streamvibe_passive_observation",
+          "fallback": "streamvibe_context"
+        }
+      },
+      "response_epoch": {
+        "enabled": true,
+        "keep_last_response": true,
+        "lookback_turns": 0,
+        "lookback_by_profile": {
+          "narration": 32
+        },
+        "trigger": "every_response",
+        "trigger_by_profile": {
+          "narration": "loop_then_every",
+          "digital_guidance": "every_response"
+        },
+        "repeat_threshold": 0.82,
+        "repeat_history": 8,
+        "repeat_gap_turns": 16,
+        "burst_gap_turns": 1,
+        "profiles": [
+          "physical_guidance",
+          "digital_guidance",
+          "monitoring",
+          "event_watch",
+          "question_answering",
+          "passive_observation",
+          "narration",
+          "fallback"
+        ]
+      },
+      "show_single_request_for_criteria": [
+        "answer_mcq"
+      ],
+      "header_memory_by_question_facet": {
+        "immediate_intent": "nonredundant"
+      },
+      "transparent_if_redundant_question_facets": [],
+      "minimal_state_if_redundant_by_question_facet": {
+        "immediate_intent": "Use the full observed action sequence to infer the immediate goal; distinguish a selected control from the result being pursued, and do not let one final cursor or tool state override consistent earlier steps.",
+        "observed_state": "Classify the dominant state across the visible sequence, not isolated cursor motion. Use the offered state definitions to distinguish setup, comparison, external guidance, waiting, review, difficulty, and direct execution; treat manipulation as execution only when committed task execution dominates the sequence."
+      }
+    },
+    "transition_state": {
+      "enabled": true,
+      "profiles": [
+        "physical_guidance",
+        "digital_guidance",
+        "explanation",
+        "monitoring",
+        "event_watch",
+        "narration",
+        "question_answering",
+        "fallback"
+      ],
+      "minor_threshold": 0.025,
+      "major_threshold": 0.14,
+      "edge_gap": 3,
+      "render_visual_deltas": false,
+      "render_ordered_observation_deltas": false,
+      "render_request_deltas": false,
+      "render_confirmed_evidence_deltas": false,
+      "render_procedure_deltas": true,
+      "procedure_delta_mode": "observed_line",
+      "render_response_deltas": false
+    },
+    "event_parser": {
+      "enabled": true,
+      "backend": "agent",
+      "prompt_profile": "grounded_evidence",
+      "profiles": [
+        "event_watch"
+      ],
+      "stride": 1,
+      "frames": 2,
+      "window": 2,
+      "render_mode": "edge",
+      "repeat_gap": 8,
+      "repeat_jaccard": 0.55,
+      "end_confirmations": 2,
+      "instance_input_gating": true,
+      "rearm_on_reappearance_only": true
+    },
+    "decision_clock": {
+      "enabled": false
+    },
+    "skills": {
+      "enabled": true,
+      "visible_retrieval": false,
+      "retrieval_top_k": 1,
+      "directory": "skills/general",
+      "general_taxonomy": true,
+      "grounded_only": true,
+      "min_grounding_overlap": 0,
+      "prompt_projection": "answer_only",
+      "execution_state_projection": true,
+      "typed_question_projection": false,
+      "prompt_projection_by_profile": {
+        "physical_guidance": "answer_only",
+        "digital_guidance": "answer_only",
+        "monitoring": "answer_only",
+        "question_answering": "answer_only",
+        "event_watch": "answer_only",
+        "narration": "legacy"
+      },
+      "profile_compatibility": {
+        "physical_guidance": [
+          "next_step",
+          "mistake_watch",
+          "milestone",
+          "stage_summary"
+        ],
+        "digital_guidance": [
+          "next_step",
+          "mistake_watch",
+          "milestone",
+          "stage_summary"
+        ],
+        "explanation": [
+          "explain"
+        ],
+        "monitoring": [
+          "hazard_monitor",
+          "mistake_watch",
+          "milestone",
+          "stage_summary"
+        ],
+        "event_watch": [
+          "event_watch"
+        ],
+        "narration": [
+          "narrate"
+        ],
+        "question_answering": [
+          "answer_question",
+          "answer_mcq"
+        ],
+        "passive_observation": [],
+        "fallback": [
+          "milestone",
+          "stage_summary"
+        ]
+      },
+      "compact_when_multiple_active": true,
+      "prompt_projection_by_question_facet": {
+        "assistance": "answer_only",
+        "general": "answer_only",
+        "immediate_intent": "answer_only",
+        "observed_state": "answer_only"
+      },
+      "execution_state_projection_excluded_profiles": [
+        "question_answering",
+        "narration"
+      ]
+    },
+    "plan_memory": {
+      "enabled": true,
+      "cue_planner_enabled": false,
+      "max_completed": 8,
+      "max_anchors": 12
+    }
+  },
+  "intervention_policy": {
+    "novelty_rescue": false,
+    "novelty_threshold": 0.8,
+    "novelty_min_gap": 4,
+    "novelty_history": 4
+  },
+  "response_policy": {
+    "verifier": "none",
+    "verify_frames": 4,
+    "action_policy": "preserve",
+    "commit_nonempty_only": true,
+    "rules": {}
+  },
+  "provenance": {
+    "method": "StreamVibe Harness",
+    "interaction_model": "StreamVibe-VL",
+    "benchmark": "StreamVibe-Bench",
+    "dataset_runtime_routing": false
+  },
+  "name": "StreamVibe Harness"
+}

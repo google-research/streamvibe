@@ -1,0 +1,8 @@
+# HF backend dependency inventory; resolve versions for your checkpoint/CUDA stack.
+# Offline artifact checks and the state demo require none of these packages.
+torch
+transformers
+accelerate
+qwen-vl-utils
+Pillow
+requests
