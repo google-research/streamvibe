@@ -1,5 +1,4 @@
-<h1 align="center"><img src="./assets/streamvibe-logo.png" width="52" height="52" align="absmiddle" alt=""> StreamVibe</h1>
-<p align="center"><strong>Proactive Video Agents for Evolving User Intent</strong></p>
+<h2 align="center"><img src="./assets/streamvibe-logo.png" width="36" height="36" align="absmiddle" alt=""> StreamVibe: Proactive Video Agents for Evolving User Intent</h2>
 
 <p align="center">
   <a href="https://arxiv.org/abs/2610.34662v2">Paper</a> ·
