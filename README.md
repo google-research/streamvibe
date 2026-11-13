@@ -1,8 +1,29 @@
-# StreamVibe: Proactive Video Agents for Evolving User Intent
+<p align="center">
+  <img src="./assets/streamvibe-logo.png" width="128" alt="StreamVibe mascot">
+</p>
 
-StreamVibe studies how video assistants can track evolving user intent in a live stream and decide when to respond. The paper introduces StreamVibe-Bench, StreamVibe-VL, and StreamVibe-Harness.
+<h1 align="center">StreamVibe</h1>
+<p align="center"><strong>Proactive Video Agents for Evolving User Intent</strong></p>
 
-[Read the paper on arXiv](https://arxiv.org/abs/2610.34662v2)
+<p align="center">
+  <a href="https://arxiv.org/abs/2610.34662v2">Paper</a> ·
+  <a href="https://stream-vibe.github.io/">Project page &amp; demo</a> ·
+  <a href="#citation">Citation</a>
+</p>
+
+> **Code release:** The StreamVibe code will be released in this repository this week.
+
+## Overview
+
+StreamVibe studies how a video assistant can follow a user's changing goals and decide when to offer help as a live video stream unfolds.
+
+<p align="center">
+  <a href="./assets/streamvibe-overview.webp"><img src="./assets/streamvibe-overview.webp" alt="StreamVibe illustrates proactive assistance for explicit, implicit, and changing user intents in live video."></a>
+</p>
+
+- **StreamVibe-Bench** evaluates proactive assistance across explicit, implicit, and dynamic user intents, with 4,100 evaluation samples and 85,000 training samples.
+- **StreamVibe-VL** is a streaming vision-language model that infers user intent from incoming video and decides when and how to respond.
+- **StreamVibe-Harness** uses hierarchical memory to track active intents and task progress as the interaction evolves.
 
 ## Citation
 
