@@ -1,8 +1,4 @@
-<p align="center">
-  <img src="./assets/streamvibe-logo.png" width="128" alt="StreamVibe mascot">
-</p>
-
-<h1 align="center">StreamVibe</h1>
+<h1 align="center"><img src="./assets/streamvibe-logo.png" width="52" height="52" align="absmiddle" alt=""> StreamVibe</h1>
 <p align="center"><strong>Proactive Video Agents for Evolving User Intent</strong></p>
 
 <p align="center">
